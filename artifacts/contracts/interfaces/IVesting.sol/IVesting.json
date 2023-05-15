@@ -1,0 +1,94 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IVesting",
+  "sourceName": "contracts/interfaces/IVesting.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "enum IVesting.Sale",
+          "name": "sale",
+          "type": "uint8"
+        }
+      ],
+      "name": "stageInfo",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "maxSupply",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lockedSupply",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "vestedSupply",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "claimedSupply",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "releaseTGE",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "cliff",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "period",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "vestingIndex",
+          "type": "uint256"
+        }
+      ],
+      "name": "vestingInfo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "wallet",
+          "type": "address"
+        },
+        {
+          "internalType": "enum IVesting.Sale",
+          "name": "sale",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "paid",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

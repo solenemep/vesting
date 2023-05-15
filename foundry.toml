@@ -1,13 +1,16 @@
 [profile.default]
 src = "src"
+out = "out"
+libs = ["lib"]
+solc = "0.8.10" # to use a specific local solc install set the path as `solc = "<path to solc>/solc"`
+eth-rpc-url = "https://mainnet.infura.io"
+
+## set only when the `hardhat` profile is selected
+[profile.hardhat]
+src = "contracts"
 out = "artifacts"
 libs = ["node_modules"]
-remappings = [
-    "@ensdomains/=node_modules/@ensdomains/",
-    "@ethereum-waffle/=node_modules/@ethereum-waffle/",
-    "@openzeppelin/=node_modules/@openzeppelin/",
-    "eth-gas-reporter/=node_modules/eth-gas-reporter/",
-    "hardhat/=node_modules/hardhat/",
-]
 
-# See more config options https://github.com/foundry-rs/foundry/tree/master/config
+## set only when the `spells` profile is selected
+[profile.spells]
+## --snip-- more settings

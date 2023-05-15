@@ -16,13 +16,17 @@ contract TestInit is Test {
     address public constant USER3 = 0x0000000000000000000000000000000000000003;
     address public constant USER4 = 0x0000000000000000000000000000000000000004;
 
+    uint256 public constant DECIMALS18 = 10 ** 18;
+    uint256 public constant PRECISION = 10 ** 25;
     uint256 public constant INIT_SUPPLY = 220 * 10 ** 6 * DECIMALS18;
+    uint256 public constant BLOCKS_PER_MONTH = 7200 * 30;
+    uint256 public constant PERCENTAGE_100 = 10 ** 27;
 
     Token public token;
     Vesting public vesting;
 
     function setUp() public virtual {
-        token = new Token(USER1, INIT_SUPPLY);
+        token = new Token(address(this), INIT_SUPPLY);
         vesting = new Vesting(address(token));
     }
 }

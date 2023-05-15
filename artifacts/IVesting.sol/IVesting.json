@@ -98,10 +98,10 @@
     "stageInfo(uint8)": "63c0d0d4",
     "vestingInfo(uint256)": "66ffcf5f"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"enum IVesting.Sale\",\"name\":\"sale\",\"type\":\"uint8\"}],\"name\":\"stageInfo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"maxSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lockedSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vestedSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"claimedSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"releaseTGE\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cliff\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"period\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"vestingIndex\",\"type\":\"uint256\"}],\"name\":\"vestingInfo\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"enum IVesting.Sale\",\"name\":\"sale\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"paid\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IVesting.sol\":\"IVesting\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@ensdomains/=node_modules/@ensdomains/\",\":@ethereum-waffle/=node_modules/@ethereum-waffle/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/interfaces/IVesting.sol\":{\"keccak256\":\"0x44c98397bd79b81460822889853e9689239ec5d87d92c4401176dbb0bd5bea30\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7699775989089a4fa11e1ed02e066235c126b5581060b4297c479eaf73761dee\",\"dweb:/ipfs/Qmdde8J3LtD3vaLHVe9GznNkqwpRBGAEVAsR7fzdaWeut5\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"enum IVesting.Sale\",\"name\":\"sale\",\"type\":\"uint8\"}],\"name\":\"stageInfo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"maxSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lockedSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vestedSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"claimedSupply\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"releaseTGE\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cliff\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"period\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"vestingIndex\",\"type\":\"uint256\"}],\"name\":\"vestingInfo\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"enum IVesting.Sale\",\"name\":\"sale\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"paid\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IVesting.sol\":\"IVesting\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@ensdomains/=node_modules/@ensdomains/\",\":@ethereum-waffle/=node_modules/@ethereum-waffle/\",\":@openzeppelin/=node_modules/@openzeppelin/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/forge-std/src/\",\":hardhat/=node_modules/hardhat/\"]},\"sources\":{\"contracts/interfaces/IVesting.sol\":{\"keccak256\":\"0x44c98397bd79b81460822889853e9689239ec5d87d92c4401176dbb0bd5bea30\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7699775989089a4fa11e1ed02e066235c126b5581060b4297c479eaf73761dee\",\"dweb:/ipfs/Qmdde8J3LtD3vaLHVe9GznNkqwpRBGAEVAsR7fzdaWeut5\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
-      "version": "0.8.7+commit.e28d00a7"
+      "version": "0.8.10+commit.fc410830"
     },
     "language": "Solidity",
     "output": {
@@ -206,7 +206,9 @@
         ":@ensdomains/=node_modules/@ensdomains/",
         ":@ethereum-waffle/=node_modules/@ethereum-waffle/",
         ":@openzeppelin/=node_modules/@openzeppelin/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
         ":eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        ":forge-std/=lib/forge-std/src/",
         ":hardhat/=node_modules/hardhat/"
       ],
       "optimizer": {
@@ -1228,6 +1230,7 @@
         ],
         "abstract": false,
         "baseContracts": [],
+        "canonicalName": "IVesting",
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,

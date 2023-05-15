@@ -36,6 +36,7 @@
     "@openzeppelin/contracts": "^4.8.2",
     "@openzeppelin/test-helpers": "^0.5.16",
     "chalk": "^5.2.0",
+    "solc": "^0.8.20",
     "web3": "^1.10.0",
     "web3-eth": "^1.10.0"
   }

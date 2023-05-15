@@ -45,15 +45,15 @@ contract VestingTest is TestInit {
                 (lockedSupplySEED + lockedSupplyPRIVATE + lockedSupplyPUBLIC) <= 1000000
         );
 
-        uint256 balanceOBefore = dein.balanceOf(address(this));
-        uint256 balanceVBefore = dein.balanceOf(address(vesting));
+        uint256 balanceOBefore = token.balanceOf(address(this));
+        uint256 balanceVBefore = token.balanceOf(address(vesting));
 
         vesting.refillStage(IVesting.Sale.SEED, lockedSupplySEED * DECIMALS18);
         vesting.refillStage(IVesting.Sale.PRIVATE, lockedSupplyPRIVATE * DECIMALS18);
         vesting.refillStage(IVesting.Sale.PUBLIC, lockedSupplyPUBLIC * DECIMALS18);
 
-        uint256 balanceOAfter = dein.balanceOf(address(this));
-        uint256 balanceVAfter = dein.balanceOf(address(vesting));
+        uint256 balanceOAfter = token.balanceOf(address(this));
+        uint256 balanceVAfter = token.balanceOf(address(vesting));
 
         assertEq(
             (balanceOBefore - balanceOAfter),
@@ -85,15 +85,15 @@ contract VestingTest is TestInit {
 
         vesting.addVestingBatch(_wallets, _sales, vestedAmounts);
 
-        uint256 balanceOBefore = dein.balanceOf(address(this));
-        uint256 balanceVBefore = dein.balanceOf(address(vesting));
+        uint256 balanceOBefore = token.balanceOf(address(this));
+        uint256 balanceVBefore = token.balanceOf(address(vesting));
 
         vesting.emptyStage(IVesting.Sale.SEED);
         vesting.emptyStage(IVesting.Sale.PRIVATE);
         vesting.emptyStage(IVesting.Sale.PUBLIC);
 
-        uint256 balanceOAfter = dein.balanceOf(address(this));
-        uint256 balanceVAfter = dein.balanceOf(address(vesting));
+        uint256 balanceOAfter = token.balanceOf(address(this));
+        uint256 balanceVAfter = token.balanceOf(address(vesting));
 
         assertEq(
             (balanceOAfter - balanceOBefore),
@@ -129,14 +129,14 @@ contract VestingTest is TestInit {
         // *** BEFORE TGE / BEFORE CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + BLOCKS_PER_MONTH);
 
-        uint256 balanceUBefore = dein.balanceOf(USER1);
-        uint256 balanceVBefore = dein.balanceOf(address(vesting));
+        uint256 balanceUBefore = token.balanceOf(USER1);
+        uint256 balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER1);
         vesting.claim();
 
-        uint256 balanceUAfter = dein.balanceOf(USER1);
-        uint256 balanceVAfter = dein.balanceOf(address(vesting));
+        uint256 balanceUAfter = token.balanceOf(USER1);
+        uint256 balanceVAfter = token.balanceOf(address(vesting));
 
         assertEq((balanceUAfter - balanceUBefore), 0);
         assertEq((balanceVBefore - balanceVAfter), 0);
@@ -144,14 +144,14 @@ contract VestingTest is TestInit {
         // *** AFTER TGE / BEFORE CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + (2 * BLOCKS_PER_MONTH));
 
-        balanceUBefore = dein.balanceOf(USER1);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER1);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER1);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER1);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER1);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         uint256 result = ((vestedAmountSEED * DECIMALS18) * _releasesTGE[0]) / PERCENTAGE_100;
 
@@ -161,14 +161,14 @@ contract VestingTest is TestInit {
         // *** AFTER TGE / AFTER CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + (2 * BLOCKS_PER_MONTH) + (_cliffs[0] * BLOCKS_PER_MONTH) + elapse);
 
-        balanceUBefore = dein.balanceOf(USER1);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER1);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER1);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER1);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER1);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         uint256 leftAmount = (vestedAmountSEED * DECIMALS18) - result;
         result = (leftAmount * elapse) / (_periods[0] * BLOCKS_PER_MONTH);
@@ -181,14 +181,14 @@ contract VestingTest is TestInit {
             startBlock + (2 * BLOCKS_PER_MONTH) + (_cliffs[0] * BLOCKS_PER_MONTH) + (_periods[0] * BLOCKS_PER_MONTH)
         );
 
-        balanceUBefore = dein.balanceOf(USER1);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER1);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER1);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER1);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER1);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         leftAmount = leftAmount - result;
         result = leftAmount;
@@ -217,14 +217,14 @@ contract VestingTest is TestInit {
         // *** BEFORE TGE / BEFORE CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + BLOCKS_PER_MONTH);
 
-        uint256 balanceUBefore = dein.balanceOf(USER2);
-        uint256 balanceVBefore = dein.balanceOf(address(vesting));
+        uint256 balanceUBefore = token.balanceOf(USER2);
+        uint256 balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER2);
         vesting.claim();
 
-        uint256 balanceUAfter = dein.balanceOf(USER2);
-        uint256 balanceVAfter = dein.balanceOf(address(vesting));
+        uint256 balanceUAfter = token.balanceOf(USER2);
+        uint256 balanceVAfter = token.balanceOf(address(vesting));
 
         assertEq((balanceUAfter - balanceUBefore), 0);
         assertEq((balanceVBefore - balanceVAfter), 0);
@@ -232,14 +232,14 @@ contract VestingTest is TestInit {
         // *** AFTER TGE / BEFORE CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + (2 * BLOCKS_PER_MONTH));
 
-        balanceUBefore = dein.balanceOf(USER2);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER2);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER2);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER2);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER2);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         uint256 result = ((vestedAmountPRIVATE * DECIMALS18) * _releasesTGE[1]) / PERCENTAGE_100;
 
@@ -249,14 +249,14 @@ contract VestingTest is TestInit {
         // *** AFTER TGE / AFTER CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + (2 * BLOCKS_PER_MONTH) + (_cliffs[1] * BLOCKS_PER_MONTH) + elapse);
 
-        balanceUBefore = dein.balanceOf(USER2);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER2);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER2);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER2);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER2);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         uint256 leftAmount = (vestedAmountPRIVATE * DECIMALS18) - result;
         result = (leftAmount * elapse) / (_periods[1] * BLOCKS_PER_MONTH);
@@ -269,14 +269,14 @@ contract VestingTest is TestInit {
             startBlock + (2 * BLOCKS_PER_MONTH) + (_cliffs[1] * BLOCKS_PER_MONTH) + (_periods[1] * BLOCKS_PER_MONTH)
         );
 
-        balanceUBefore = dein.balanceOf(USER2);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER2);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER2);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER2);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER2);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         leftAmount = leftAmount - result;
         result = leftAmount;
@@ -305,14 +305,14 @@ contract VestingTest is TestInit {
         // *** BEFORE TGE / BEFORE CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + BLOCKS_PER_MONTH);
 
-        uint256 balanceUBefore = dein.balanceOf(USER3);
-        uint256 balanceVBefore = dein.balanceOf(address(vesting));
+        uint256 balanceUBefore = token.balanceOf(USER3);
+        uint256 balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER3);
         vesting.claim();
 
-        uint256 balanceUAfter = dein.balanceOf(USER3);
-        uint256 balanceVAfter = dein.balanceOf(address(vesting));
+        uint256 balanceUAfter = token.balanceOf(USER3);
+        uint256 balanceVAfter = token.balanceOf(address(vesting));
 
         assertEq((balanceUAfter - balanceUBefore), 0);
         assertEq((balanceVBefore - balanceVAfter), 0);
@@ -320,14 +320,14 @@ contract VestingTest is TestInit {
         // *** AFTER TGE / BEFORE CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + (2 * BLOCKS_PER_MONTH));
 
-        balanceUBefore = dein.balanceOf(USER3);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER3);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER3);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER3);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER3);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         uint256 result = ((vestedAmountPUBLIC * DECIMALS18) * _releasesTGE[2]) / PERCENTAGE_100;
 
@@ -337,14 +337,14 @@ contract VestingTest is TestInit {
         // *** AFTER TGE / AFTER CLIFF / BEFORE PERIOD ***
         vm.roll(startBlock + (2 * BLOCKS_PER_MONTH) + (_cliffs[2] * BLOCKS_PER_MONTH) + elapse);
 
-        balanceUBefore = dein.balanceOf(USER3);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER3);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER3);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER3);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER3);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         uint256 leftAmount = (vestedAmountPUBLIC * DECIMALS18) - result;
         result = (leftAmount * elapse) / (_periods[2] * BLOCKS_PER_MONTH);
@@ -357,14 +357,14 @@ contract VestingTest is TestInit {
             startBlock + (2 * BLOCKS_PER_MONTH) + (_cliffs[2] * BLOCKS_PER_MONTH) + (_periods[2] * BLOCKS_PER_MONTH)
         );
 
-        balanceUBefore = dein.balanceOf(USER3);
-        balanceVBefore = dein.balanceOf(address(vesting));
+        balanceUBefore = token.balanceOf(USER3);
+        balanceVBefore = token.balanceOf(address(vesting));
 
         vm.prank(USER3);
         vesting.claim();
 
-        balanceUAfter = dein.balanceOf(USER3);
-        balanceVAfter = dein.balanceOf(address(vesting));
+        balanceUAfter = token.balanceOf(USER3);
+        balanceVAfter = token.balanceOf(address(vesting));
 
         leftAmount = leftAmount - result;
         result = leftAmount;
@@ -374,8 +374,7 @@ contract VestingTest is TestInit {
     }
 
     function _initVesting() internal {
-        dein.mintArbitrary(address(this), 1000000 * DECIMALS18);
-        dein.approve(address(vesting), 1000000 * DECIMALS18);
+        token.approve(address(vesting), 1000000 * DECIMALS18);
 
         startBlock = block.number;
         vesting.setBlockTGE(startBlock + (2 * BLOCKS_PER_MONTH));
